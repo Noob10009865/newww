@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking</title>
+    <style>
+        body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; }
+        .card { background: #333; margin: 10px auto; padding: 15px; width: 300px; border-radius: 8px; border-left: 5px solid #00ffff; }
+    </style>
+</head>
+<body>
+    <h1>🏆 Tier Ranking</h1>
+    <div id="list">Loading...</div>
+    <script>
+        async function load() {
+            const res = await fetch('data.json');
+            const data = await res.json();
+            document.getElementById('list').innerHTML = data.map(p => `
+                <div class="card">
+                    <strong>${p.name}</strong> - ${p.tier}
+                </div>
+            `).join('');
+        }
+        load();
+    </script>
+</body>
+</html>
